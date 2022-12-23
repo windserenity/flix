@@ -4,9 +4,11 @@ class ReviewsController < ApplicationController
     def index
         @reviews = @movie.reviews
     end
+
     def new
         @review = @movie.reviews.new
     end
+    
     def create
         @review = @movie.reviews.new(review_params)
         
@@ -17,11 +19,27 @@ class ReviewsController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     end
+    
     def edit
-        # fail
         @review = @movie.reviews.find(params[:id])
     end
     
+    def update
+        @review = @movie.reviews.find(params[:id])
+        if @review.update(review_params) 
+            flash[:notice] = "Review updated successfully!"
+            redirect_to movie_reviews_path
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @review = @movie.reviews.find(params[:id])
+        @review.destroy
+        redirect_to movie_reviews_url, status: :see_other
+        flash[:alert] = "Review deleted successfully!"
+    end
     private
 
     def review_params
