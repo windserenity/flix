@@ -17,13 +17,18 @@ class ReviewsController < ApplicationController
         render :new, status: :unprocessable_entity
       end
     end
-
+    def edit
+        # fail
+        @review = @movie.reviews.find(params[:id])
+    end
+    
     private
 
     def review_params
         params.require(:review).permit(:name, :comment, :stars)
     end
+    
     def set_movie
         @movie = Movie.find(params[:movie_id])
-      end
+    end
 end
