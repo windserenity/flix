@@ -8,8 +8,8 @@
       <%= year_of(@movie) %> &bull; <%= @movie.rating %>
     </h2>
     <div class="reviews">
-      <%= link_to pluralize(@movie.reviews.size, "review"),
-            movie_reviews_path(@movie) %>
+      <%= average_stars(@movie) %>
+      <%= display_reviews(@movie) %>
     </div>
     <p>
       <%= @movie.description %>
