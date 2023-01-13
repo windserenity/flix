@@ -9,7 +9,7 @@
       <%= year_of(@movie) %> &bull; <%= @movie.rating %>
     </h2>
     <div class="reviews">
-        <div class="stars"> <%= average_stars(@movie) %></div>
+        <div class="stars"> <%= render "shared/stars", percent: @movie.average_stars_as_percent %></div>
         <div><%= display_reviews(@movie) %></div> 
         </div>
     <p>
