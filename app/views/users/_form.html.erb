@@ -1,0 +1,19 @@
+<%= form_with(model: user) do |f| %>
+    <%= render 'shared/errors', object: user %> 
+    
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true %>
+
+
+    <%= f.label :email %>
+    <%= f.email :email %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+
+    <%= f.label :confirm_password, "Confrim Password" %>
+    <%= f.password_field :confirm_password %>
+
+    <%= f.submit "Sign Up" %>
+ 
+<% end %>
