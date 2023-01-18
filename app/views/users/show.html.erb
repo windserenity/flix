@@ -1,4 +1,23 @@
+
 <section class="user">
-  <h1><%= @user.name %></h1>
-  <h2><%= mail_to(@user.email) %></h2>
+
+ <div class="d-flex flex-row">
+    <div class="p-2">
+        <%= profile_image(@user) %>
+     </div>
+   <div class="p-2">
+      <div class="d-flex flex-column">
+          <h1><%= @user.name %></h1>
+          <h2><%= mail_to(@user.email) %></h2>
+      </div>
+    </div>
+    
+  </div>
+   <p class="p-2">
+      
+      Member since - <%= @user.created_at.strftime("%B %Y") %>
+    </p>
 </section>
+
+
+
