@@ -14,6 +14,10 @@
     <%= f.label :confirm_password, "Confrim Password" %>
     <%= f.password_field :confirm_password %>
 
-    <%= f.submit "Sign Up" %>
+   <% if user.new_record? %>
+        <%= f.submit "Create Account" %>
+    <% else %>
+        <%= f.submit "Update Account" %>
+    <% end %>
  
 <% end %>
