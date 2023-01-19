@@ -9,7 +9,9 @@ class User < ApplicationRecord
   
   validates :password, length: { minimum: 10, allow_blank: true }
 
-
+  validates :username, presence: true, 
+                      format: { with: /\A[a-zA-Z0-9]+\z/} ,
+                      uniqueness: { case_sensitive: true }
   def gravatar_id
     Digest::MD5::hexdigest(email.downcase)
   end
