@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
 
-def index
+before_action :require_signin, except: [:new, :create]
+before_action :require_current_user, only: [:edit, :update, :destroy]
+
+  def index
     @users = User.all
 end
 
@@ -24,11 +27,11 @@ def create
 end
 
 def edit
-    @user = User.find(params[:id])
+    
   end
 
 def update
-    @user = User.find(params[:id])
+    
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "Account successfully updated!"
     else
@@ -37,7 +40,6 @@ def update
 end  
   
   def destroy
-    @user = User.find(params[:id])
     @user.destroy
     session[:user_id] = nil
     redirect_to root_path, status: :see_other,
@@ -49,6 +51,13 @@ private
     def user_params
         params.require(:user).
         permit(:name, :email, :password, :password_confirmation, :username)
+    end
+
+    def require_current_user
+      @user = User.find(params[:id])
+       unless current_user?(@user)
+        redirect_to root_url, status: :see_other
+      end
     end
 
 end
