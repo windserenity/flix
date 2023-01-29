@@ -1,7 +1,7 @@
 <% @movies.each do |movie| %>
   <section class="movie">
     <div class="image">
-     <%= image_tag movie.image_file_name %>
+      <%= image_tag movie.image_file_name %>
     </div>
     <div class="summary">
       <h2>
@@ -16,7 +16,8 @@
     </div>
   </section>
 <% end %>
-
- <section class="admin">
+<% if current_user_admin? %>
+  <section class="admin">
     <%= link_to 'Create Movie', new_movie_path, class: "button" %>
   </section>
+<% end %> 
