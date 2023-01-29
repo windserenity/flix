@@ -1,23 +1,18 @@
-
 <section class="user d-flex flex-column">
-
- <div class="d-flex flex-row">
+  <div class="d-flex flex-row">
     <div class="p-2 d-flex justify-content-center">
-        <%= profile_image(@user) %>
-     </div>
-        
-    
+      <%= profile_image(@user) %>
+    </div>
     <div class="p-2">
       <div class="d-flex flex-column ">
-          <h1><%= @user.name %></h1>  
-          <h2><%= mail_to(@user.email) %></h2>
+        <h1><%= @user.name %></h1>
+        <h2><%= mail_to(@user.email) %></h2>
       </div>
     </div>
-    
   </div>
-  
   <p class="p-2">
-      <%= @user.username %> <br> Member since - <%= @user.created_at.strftime("%B %Y") %>
+    <%= @user.username %> <br>
+     Member since - <%= @user.created_at.strftime("%B %Y") %>
   </p>
   <% if current_user?(@user) %>
     <div class="actions">
@@ -26,8 +21,4 @@
                   data: { turbo_method: :delete, turbo_confirm: "Permanently delete your account!?" } %>
     </div>
   <% end %>
-  
 </section>
-
-
-
