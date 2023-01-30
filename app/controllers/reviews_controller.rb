@@ -1,12 +1,13 @@
 class ReviewsController < ApplicationController
   before_action :require_signin, except: :index
-  before_action :require_current_user, only: [:edit, :update, :destroy]
+  before_action :require_current_user, only: [:edit, :update, :destroy]  
+
 
   before_action :set_movie
 
   def index
     @reviews = @movie.reviews
-    
+
   end
 
   def new

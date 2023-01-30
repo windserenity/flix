@@ -22,7 +22,7 @@ private
 
     def current_user?(user)
         #is user being requested the same as the user loged in
-        current_user == user
+        current_user == user || current_user_admin?
     end
 
     helper_method :current_user?
