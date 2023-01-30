@@ -5,5 +5,3 @@ class MakeReviewsAJoinTable < ActiveRecord::Migration[7.0]
     Review.delete_all
   end
 end
-
-  
