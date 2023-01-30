@@ -6,9 +6,8 @@
         <%= render "shared/stars", percent: review.stars_as_percent %>
       </div>
       <p>
-    <%= profile_image(review.user, 35) %>
+        <%= profile_image(review.user, 35) %>
         <%= link_to review.user.name, review.user %>
-        
         <span class="date">
           <%= time_ago_in_words(review.created_at) %> ago
         </span>
@@ -16,12 +15,13 @@
       <p>
         <%= review.comment %>
       </p>
-      
+      <% if current_user?(review.user) %>
+        <section>
+          <%= link_to "Edit", edit_movie_review_path(@movie, review), class: "btn btn-secondary" %>
+          <%= link_to 'Delete', movie_review_path(@movie, review), class: "btn btn-secondary", 
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure you wanat to delete the review?" } %>
+        </section>
+      <% end %>
     </li>
-    <section>
-      <%= link_to "Edit", edit_movie_review_path(@movie, review), class: "btn btn-secondary" %>
-      <%= link_to 'Delete', movie_review_path(@movie, review), class: "btn btn-secondary", 
-      data: { turbo_method: :delete, turbo_confirm: "Are you sure you wanat to delete the review?" } %>
-    </section>
   <% end %>
 </ul>

@@ -1,10 +1,12 @@
 class ReviewsController < ApplicationController
   before_action :require_signin, except: :index
+  before_action :require_current_user, only: [:edit, :update, :destroy]
 
   before_action :set_movie
 
   def index
     @reviews = @movie.reviews
+    
   end
 
   def new
@@ -56,5 +58,14 @@ class ReviewsController < ApplicationController
 
   def set_movie
     @movie = Movie.find(params[:movie_id])
+  end
+
+  def require_current_user
+    @movie = Movie.find(params[:movie_id])
+    @review = @movie.reviews.find(params[:id])
+    @user = @review.user
+    unless current_user?(@user)
+      redirect_to root_url, status: :see_other
+    end
   end
 end

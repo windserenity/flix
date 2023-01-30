@@ -8,7 +8,7 @@
           <% if current_user %>
                <li> <%= link_to current_user.name, current_user %> </li>
                <li class="button"> <%= link_to 'Sign out', session_path, 
-                    data: { turbo_method: :delete } %>
+                    data: { turbo_method: :delete }, class:"button" %>
                </li>
           <% else %>
                <li class="button"> <%= link_to 'Sign in', sign_in_path, class:"button" %></li>
