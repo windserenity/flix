@@ -1,6 +1,6 @@
 <section class="user d-flex flex-column">
   <div class="d-flex flex-row">
-    <div class="p-2 d-flex justify-content-center">
+    <div class="p-2 justify-content-center">
       <%= profile_image(@user) %>
     </div>
     <div class="p-2">
@@ -12,7 +12,7 @@
   </div>
   <p class="p-2">
     <%= @user.username %> <br>
-     Member since - <%= @user.created_at.strftime("%B %Y") %>
+    Member since - <%= @user.created_at.strftime("%B %Y") %>
   </p>
   <% if current_user?(@user) %>
     <div class="actions">
@@ -20,5 +20,24 @@
       <%= link_to 'Delete Account', @user, class: "button delete",
                   data: { turbo_method: :delete, turbo_confirm: "Permanently delete your account!?" } %>
     </div>
+    <% if @reviews.present? %>
+      <h3>Reviews</h3>
+      <% @reviews.each do |review| %>
+        <div class="review">
+          <div class="details">
+            <span class="title">
+              <%= link_to review.movie.title, review.movie %>
+            </span>
+            <%= pluralize(review.stars, 'star') %>
+            <span class="date">
+              <%= time_ago_in_words(review.created_at) %> ago
+            </span>
+            <p>
+              <%= review.comment %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </section>
