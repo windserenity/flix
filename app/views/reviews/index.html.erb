@@ -2,7 +2,9 @@
 <ul class="reviews">
   <% @reviews.each do |review| %>
     <li>
-      <%= render "shared/stars", percent: review.stars_as_percent %>
+      <div class="mb-4">
+        <%= render "shared/stars", percent: review.stars_as_percent %>
+      </div>
       <p>
     <%= profile_image(review.user, 35) %>
         <%= link_to review.user.name, review.user %>
