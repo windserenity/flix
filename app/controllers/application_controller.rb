@@ -1,22 +1,22 @@
 class ApplicationController < ActionController::Base
 
 private
- 
-    def require_signin 
-        unless  current_user 
+
+    def require_signin
+        unless  current_user
            session[:intended_url] = request.url
-           redirect_to new_session_path, alert: "Please Sign in first!" 
+           redirect_to new_session_path, alert: "Please Sign in first!"
         end
     end
 
 
     def current_user
-        ##memoization.  unless current user nil find user with session cookie 
+        ##memoization.  unless current user nil find user with session cookie
         ##store in instance var to avoid calling multiple times
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
 
         end
-    
+
     helper_method :current_user
 
 
@@ -40,8 +40,8 @@ private
 
     helper_method :current_user_admin?
 
-   
-    
+
+
 end
 
 
